@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--head section-->
+<%- include('layouts/head'); %> 
+
+<body>
+    <!-- Navigation-->
+    <%- include('layouts/navbar'); %>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('img/login-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                    <div class="container hdr">
+                        <h1>Login / Sign Up</h1>
+                        <!-- Placeholder for login/signup form -->
+                        <form>
+                          <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Enter your username">
+                          </div>
+                          <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                          </div>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Post Content-->
+        
+   <!-- Footer-->
+   <%- include('layouts/footer'); %>
+   <!--Bootsrap content-->
+   <%- include('layouts/script'); %>
+</body>
+
+</html>

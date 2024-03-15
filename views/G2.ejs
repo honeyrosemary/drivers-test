@@ -1,0 +1,124 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<!--head section-->
+<%- include('layouts/head'); %>
+
+  <body>
+    <!-- Navigation-->
+    <%- include('layouts/navbar'); %>
+      <!-- Page Header-->
+      <header class="masthead" style="background-image: url('img/G2-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+              <div class="page-heading">
+                <div class="container hdr">
+                  <h1>Book G2 Test</h1><br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% if (responseObject && responseObject['message']) { %>
+          <% if (responseObject['status']==='Success' ) { %>
+            <div class="alert alert-success banner">
+              <%= responseObject['message'] %>
+            </div>
+            <% } else { %>
+              <div class="alert alert-danger banner">
+                <%= responseObject['message'] %>
+              </div>
+              <% } %>
+                <% } %>
+      </header>
+      <!-- Main Content-->
+      <!-- G2 Form -->
+      <main class mb-4>
+        <div class="container px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+              <p>Embark on the journey of a lifetime with G2 Driving, where the road to independence begins!</p>
+              <div class="my-5">
+                <form id="contactForm" action="<%= responseObject['licenseData'] ? '/driveUpdate/G2' : '/drive/G2' %>"
+                  method="post" enctype="multipart/form-data">
+                  <div class="form-sections-container">
+                    <div class="form-sections">
+                      <legend>Personal Information</legend>
+                      <div class="form-floating">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName"
+                          placeholder="Enter your first name">
+                      </div>
+
+                      <div class="form-floating">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName"
+                          placeholder="Enter your last name">
+                      </div>
+
+                      <div class="form-floating">
+                        <label for="licenseNumber" class="form-label">License Number</label>
+                        <input type="text" class="form-control" id="licenseNumber" name="licenseNumber"
+                          placeholder="Enter your license number (8 characters)">
+                      </div>
+
+                      <div class="form-floating">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age">
+                      </div>
+
+                      <div class="form-floating">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" name="dob">
+                      </div>
+                    </div>
+
+                    <div class="form-sections">
+                      <legend>Vehicle Information</legend>
+                      <div class="form-floating">
+                        <label for="make" class="form-label">Car Make</label>
+                        <input type="text" class="form-control" id="make" name="make" placeholder="Enter your car make">
+                      </div>
+
+                      <div class="form-floating">
+                        <label for="model" class="form-label">Car Model</label>
+                        <input type="text" class="form-control" id="model" name="model"
+                          placeholder="Enter your car model">
+                      </div>
+
+                      <div class="form-floating">
+                        <label for="year" class="form-label">Car Year</label>
+                        <input type="text" class="form-control" id="year" name="year" placeholder="Enter your car year">
+                      </div>
+
+                      <div class="form-floating">
+                        <label for="plateNumber" class="form-label">Plate Number</label>
+                        <input type="text" class="form-control" id="plateNumber" name="plateNumber"
+                          placeholder="Enter your car plate number">
+                      </div>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary text-uppercase" type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- Footer-->
+      <%- include('layouts/footer'); %>
+        <!--Bootsrap content-->
+        <%- include('layouts/script'); %>
+          <script>
+            let alertElement = document.querySelector('.alert');
+            if (alertElement) {
+              setTimeout(() => {
+                alertElement.style.display = 'none';
+              }, 1500);
+            }
+          </script>
+  </body>
+
+</html>
