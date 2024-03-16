@@ -1,7 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema
-
+const Schema = mongoose.Schema;
 
 const DriveModelSchema = new Schema({
     // schema for storing user data including first name, last name, age, license number, and car details.
@@ -16,8 +15,8 @@ const DriveModelSchema = new Schema({
         year: { type: Number },
         plateNumber: { type: String }
     }
-})
+});
 
-const driveModel = mongoose.model('driveModel', DriveModelSchema)
+const DriveModel = mongoose.model('driveModel', DriveModelSchema);
 
-module.exports = driveModel
+module.exports = DriveModel;
