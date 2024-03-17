@@ -1,45 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!--head section-->
+  <%- include('layouts/head'); %>
 
-<!--head section-->
-<%- include('layouts/head'); %> 
-
-<body>
+  <body>
     <!-- Navigation-->
     <%- include('layouts/navbar'); %>
     <!-- Page Header-->
     <header class="masthead" style="background-image: url('img/login-bg.jpg')">
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="page-heading">
-                    <div class="container hdr">
-                        <h1>Login / Sign Up</h1>
-                        <!-- Placeholder for login/signup form -->
-                        <form>
-                          <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter your username">
-                          </div>
-                          <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                          </div>
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                      </div>
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="page-heading">
+              <div class="container hdr">
+                <h1>Login / Sign Up</h1>
+
+                <% if(errors !=null && errors.length> 0) { %>
+                <ul class="list-group">
+                  <% for(var i = 0; i < errors.length; i++) { %>
+                  <li class="list-group-item text-danger"><%= errors[i] %></li>
+                  <% } %>
+                </ul>
+                <% } %>
+
+                <!-- Placeholder for login/signup form -->
+                <form
+                  id="loginSection"
+                  class="<%= showLogin ? '' : 'hidden' %>"
+                  method="post"
+                  action="/users/login"
+                >
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="userName"
+                      name="userName"
+                      placeholder="Enter your username"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                      placeholder="Enter your password"
+                    />
+                  </div>
+                  <div class="login-signup">
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                    <div>
+                      New user? &nbsp;
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="toggleSection('signupSection')"
+                      >
+                        Sign Up
+                      </button>
                     </div>
+                  </div>
+                </form>
+
+                <form
+                  id="signupSection"
+                  class="<%= showSignup ? '' : 'hidden' %>"
+                  method="post"
+                  action="/user/create"
+                >
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="userName"
+                      id="username"
+                      placeholder="Enter your username"
+                      autocomplete="off"
+                    />
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col">
+                      <label for="password" class="form-label">Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        autocomplete="off"
+                      />
                     </div>
-                </div>
+                    <div class="col">
+                      <label for="repeatPassword" class="form-label"
+                        >Re enter Password</label
+                      >
+                      <input
+                        type="password"
+                        class="form-control"
+                        name="repeatPassword"
+                        id="repeatPassword"
+                        placeholder="Re enter your password"
+                        autocomplete="off"
+                      />
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="userType" class="form-label" name="userType"
+                      >User Type</label
+                    >
+                    <select
+                      name="userType"
+                      id="userType"
+                      class="form-select slct"
+                      aria-placeholder="Select User Type"
+                      autocomplete="off"
+                    >
+                      <option class="form-control-option" value="Driver">
+                        Driver
+                      </option>
+                      <option class="form-control-option" value="Examiner">
+                        Examiner
+                      </option>
+                      <option class="form-control-option" value="Admin">
+                        Admin
+                      </option>
+                    </select>
+                  </div>
+                  <div class="login-signup">
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                    <div>
+                      You have an account? &nbsp;
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="toggleSection('loginSection')"
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <% if (responseObject && responseObject['message']) { %> <% if
+      (responseObject['status']==='Success' ) { %>
+      <div class="alert alert-success banner">
+        <%= responseObject['message'] %>
+      </div>
+      <% } else { %>
+      <div class="alert alert-danger banner">
+        <%= responseObject['message'] %>
+      </div>
+      <% } %> <% } %>
     </header>
     <!-- Post Content-->
-        
-   <!-- Footer-->
-   <%- include('layouts/footer'); %>
-   <!--Bootsrap content-->
-   <%- include('layouts/script'); %>
-</body>
 
+    <script>
+      function toggleSection(sectionId) {
+        let signupSection = document.getElementById("signupSection");
+        let loginSection = document.getElementById("loginSection");
+        if (sectionId === "signupSection") {
+          if (signupSection && signupSection.classList.contains("hidden")) {
+            signupSection.classList.remove("hidden");
+            loginSection.classList.add("hidden");
+          }
+        } else {
+          if (loginSection && loginSection.classList.contains("hidden")) {
+            signupSection.classList.add("hidden");
+            loginSection.classList.remove("hidden");
+          }
+        }
+      }
+
+      let alertElement = document.querySelector(".alert");
+      let dbError = document.querySelector(".text-danger");
+      if (alertElement) {
+        setTimeout(() => {
+          alertElement.style.display = "none";
+        }, 3000);
+      }
+      if (dbError) {
+        setTimeout(() => {
+          dbError.style.display = "none";
+        }, 3500);
+      }
+    </script>
+    <!-- Footer-->
+    <%- include('layouts/footer'); %>
+    <!--Bootsrap content-->
+    <%- include('layouts/script'); %>
+  </body>
 </html>

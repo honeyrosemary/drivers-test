@@ -12691,3 +12691,27 @@ header.masthead .post-heading .meta a {
 #contactForm .form-sections {
   width: 100%;
 }
+
+.login-signup {
+  padding: 15px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.slct {
+  padding: 14px 10px;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.form-control-option {
+  padding: 10px 5px;
+}
