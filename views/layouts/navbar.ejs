@@ -19,7 +19,7 @@
           <a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Dashboard</a>
         </li>
 
-        <% if (global && global.userData) { %>
+        <% if (global && global.userData && global.userData.userType === 'Driver') { %>
         <li class="nav-item">
           <a class="nav-link px-lg-3 py-3 py-lg-4" href="/G2">G2 Test</a>
         </li>

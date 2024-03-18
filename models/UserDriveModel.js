@@ -4,7 +4,10 @@ const bcrypt = require("bcrypt");
 const uniqueValidator = require("mongoose-unique-validator");
 
 const UserDriveModelSchema = new Schema({
-  // schema for storing user data including first name, last name, age, license number, and car details.
+  /*
+  schema for storing user data including first name, last name, age, license number, car details
+  and user signup data such as user name, password and user type.
+  */
   firstName: { type: String, required: false },
   lastName: { type: String, required: false },
   age: { type: Number, required: false },
@@ -21,6 +24,7 @@ const UserDriveModelSchema = new Schema({
   },
 });
 
+// Password Encryption algorithm
 UserDriveModelSchema.plugin(uniqueValidator);
 UserDriveModelSchema.pre("save", function (next) {
   const user = this;

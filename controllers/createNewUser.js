@@ -13,11 +13,11 @@ module.exports = async (req, res) => {
     const {
       firstName = "",
       lastName = "",
-      age = "0",
+      age = "00",
       licenseNumber = "",
       make = "",
       model = "",
-      year = "0",
+      year = new Date().getFullYear(),
       plateNumber = "",
       dob,
       userName = user.userName || "",

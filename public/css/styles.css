@@ -12715,3 +12715,17 @@ header.masthead .post-heading .meta a {
 .form-control-option {
   padding: 10px 5px;
 }
+
+.route-link {
+  color: #0085A1;
+}
+
+.route-link:hover {
+  color: #04c9f3;
+  text-decoration: underline;
+}
+
+.form-control::placeholder {
+  color: grey !important;
+  opacity: 1 !important;
+}
