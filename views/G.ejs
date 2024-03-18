@@ -37,30 +37,8 @@
       <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
-            <!--
-              <form
-                id="license-form"
-                method="post"
-                action="/drive/G"
-                enctype="multipart/form-data"
-              >
-                <div class="mb-3">
-                  <label for="licenseNumber" class="form-label"
-                    >License Number</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="licenseNumber"
-                    name="licenseNumber"
-                    placeholder="Enter your license number"
-                  />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-              -->
-
-            <% if (responseObjectG['licenseData']) { %>
+            <% if (responseObjectG['licenseData'] &&
+            responseObjectG['licenseData'].licenseNumber) { %>
             <p>
               Shown below is your vehicle details. Hit update button to make
               changes to the existing data for the license number <%=
@@ -203,6 +181,11 @@
                   Update
                 </button>
               </form>
+            </div>
+            <% } else { %>
+            <div class="my-5">
+              Please add your details in the G2 section to view and update your
+              vehicel data in G Test.
             </div>
             <% } %>
           </div>
